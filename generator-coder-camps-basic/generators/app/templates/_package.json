@@ -1,0 +1,18 @@
+{
+	"name": "CoderCamps",
+	"version": "0.0.1",
+	"description": "An application for the Coder Camps FullStack JS course",
+	"main": "server.js",
+	"scripts": {
+		"start": "node server.js"
+		},
+		"license": "MIT",
+		"dependencies": {
+			"angular": "^1.3.16",
+			"angular-ui-router": "^0.2.15",
+			"body-parser": "^1.12.4",
+			"bootstrap": "^3.3.4",
+			"ejs": "^2.3.1",
+			"express": "^4.12.4"
+		}
+	}
