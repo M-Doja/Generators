@@ -1,10 +1,10 @@
 {
-  "name": "generator-coder-camps-basic",
-  "version": "0.0.7",
+  "name": "generator-coder-camps-mean",
+  "version": "0.0.1",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "https://github.com/Coder-Camps-SF/Generators/tree/master/generator-coder-camps-basic",
+  "repository": "Jeremy-Doucet/generator-coder-camps-mean",
   "author": {
     "name": "Jeremy Doucet",
     "email": "jeremy.doucet93@gmail.com",
@@ -21,6 +21,9 @@
       ],
       "dependencies": {
         "chalk": "^1.0.0",
+        "lodash": "^3.10.0",
+        "underscore.string": "^3.1.1",
+        "util": "^0.10.3",
         "yeoman-generator": "^0.19.0",
         "yosay": "^1.0.2"
         },

@@ -50,12 +50,24 @@ module.exports = yeoman.generators.Base.extend({
       this.destinationPath('/public/javascript/app.js')
       );
     this.fs.copy(
+      this.templatePath('_HomeController.js'),
+      this.destinationPath('/public/javascript/controllers/HomeController.js')
+      );
+    this.fs.copy(
+      this.templatePath('_HomeFactory.js'),
+      this.destinationPath('/public/javascript/services/HomeFactory.js')
+      );
+    this.fs.copy(
       this.templatePath('_site.css'),
       this.destinationPath('/public/css/site.css')
       );
     this.fs.copy(
       this.templatePath('_bootstrap_theme.css'),
       this.destinationPath('/public/css/bootstrap_theme.css')
+      );
+    this.fs.copy(
+      this.templatePath('_homepage.html'),
+      this.destinationPath('/public/views/Home.html')
       );
     this.fs.copy(
       this.templatePath('_bower.json'),
