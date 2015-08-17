@@ -9,10 +9,10 @@
 			templateUrl: '/views/home_page.html'
 		}).state('Register', {
 			url: '/Register',
-			templateUrl: '/views/register.html'
+			templateUrl: '/views/user_register.html'
 		}).state('Login', {
 			url: '/Login',
-			templateUrl: '/views/login.html'
+			templateUrl: '/views/user_login.html'
 		});
 		$urlRouterProvider.otherwise('/');
 	}

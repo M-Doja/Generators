@@ -25,7 +25,7 @@ module.exports = yeoman.generators.Base.extend({
       name: 'bootstrapTemplate',
       message: 'Which bootstrap template would you like?',
       type: 'list',
-      choices: ['slate', 'superhero', 'darkly', 'cyborg', 'None']
+      choices: ['None', 'slate', 'superhero', 'darkly', 'cyborg']
     }];
 
     this.prompt(prompts, function (props) {
@@ -55,7 +55,7 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath('.gitignore')
         );
     },
-    
+
     // projectfiles: function () {
     //   this.fs.copy(
     //     this.templatePath('editorconfig'),
@@ -73,9 +73,16 @@ module.exports = yeoman.generators.Base.extend({
           this.destinationPath('/dist/css/bootstrap_theme.min.css')
           );
       }
+      else {
+        this.fs.copy(
+          this.templatePath('/bootstrap_themes/none.css'),
+          this.destinationPath('/dist/css/bootstrap_theme.min.css')
+        );
+      }
     },
     projectFiles: function () {
       this.template('_index.html', '/views/index.html');
+      this.template('_server.js', 'server.js')
       this.fs.copy(
         this.templatePath('_app.js'),
         this.destinationPath('/src/javascript/app.js')
@@ -119,10 +126,6 @@ module.exports = yeoman.generators.Base.extend({
       this.fs.copy(
         this.templatePath('user.model.js'),
         this.destinationPath('/models/Users.js')
-        );
-      this.fs.copy(
-        this.templatePath('_server.js'),
-        this.destinationPath('server.js')
         );
       this.fs.copy(
         this.templatePath('_site.css'),

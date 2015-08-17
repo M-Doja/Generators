@@ -8,9 +8,9 @@ var passport = require('passport');
 require('./models/Users');
 require('./config/passport');
 //connect to the server
-mongoose.connect('mongodb://localhost/MEANTodo');
+mongoose.connect('mongodb://localhost/<%= appName %>');
 
-var userRoutes = require('./routes/userRoutes');
+var userRoutes = require('./routes/UserRoutes');
 
 var app = express();
 var port = process.env.PORT || 3000;
