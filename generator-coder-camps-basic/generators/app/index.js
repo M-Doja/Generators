@@ -31,7 +31,7 @@ module.exports = yeoman.generators.Base.extend({
     this.prompt(prompts, function(props) {
       // To access props later use this.props.someOption;
       this.appName = _s.slugify(props.appName) || 'coder-camps-js';
-      this.appDesc = props.appDesc || 'An application built using the MEAN stack and gulp for the Fullstack JS course from Coder Camps.';
+      this.appDesc = props.appDesc || 'An application built using the basic JavaScript for the Fullstack JS course from Coder Camps.';
       this.bstemplate = props.bootstrapTemplate;
       console.log(this.bstemplate);
       // To access props later use this.props.someOption;
@@ -44,7 +44,7 @@ module.exports = yeoman.generators.Base.extend({
     if (this.bstemplate !== 'None') {
       this.fs.copy(
         this.templatePath('/bootstrap_themes/_' + this.bstemplate + '.min.css'),
-        this.destinationPath('/dist/css/bootstrap_theme.min.css')
+        this.destinationPath('/public/css/bootstrap_theme.min.css')
       );
     }
     else {
@@ -53,7 +53,7 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath('/public/css/bootstrap_theme.min.css')
       )
     }
-    this.template('_index.html', '/views/index.html');
+    this.template('_index.html', './views/index.html');
     this.template('_package.json','package.json');
     this.fs.copy(
       this.templatePath('_server.js'),
