@@ -33,9 +33,6 @@ module.exports = yeoman.generators.Base.extend({
       this.appName = _s.slugify(props.appName) || 'coder-camps-js';
       this.appDesc = props.appDesc || 'An application built using the basic JavaScript for the Fullstack JS course from Coder Camps.';
       this.bstemplate = props.bootstrapTemplate;
-      console.log(this.bstemplate);
-      // To access props later use this.props.someOption;
-
       done();
     }.bind(this));
   },

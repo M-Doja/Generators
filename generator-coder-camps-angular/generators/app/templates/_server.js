@@ -1,17 +1,6 @@
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
-//defines mongoose
-var mongoose = require('mongoose');
-var passport = require('passport');
-//define the models
-require('./models/Users');
-require('./config/passport');
-//connect to the server
-mongoose.connect('mongodb://localhost/MEANTodo');
-
-var userRoutes = require('./routes/userRoutes');
-
 var app = express();
 var port = process.env.PORT || 3000;
 
@@ -30,14 +19,12 @@ app.set('view options', {
 //middleware that allows for us to parse JSON and UTF-8 from the body of an HTTP request
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(passport.initialize());
 
 //on homepage load, render the index page
 app.get('/', function(req, res) {
 	res.render('index');
 });
 
-app.use('/api/Users', userRoutes);
 var server = app.listen(port, function() {
 	var host = server.address().address;
 	console.log('Example app listening at http://localhost:' + port);

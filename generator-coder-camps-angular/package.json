@@ -1,6 +1,6 @@
 {
   "name": "generator-coder-camps-angular",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
@@ -9,22 +9,25 @@
     "name": "Jeremy Doucet",
     "email": "jeremy.doucet93@gmail.com",
     "url": "https://github.com/Jeremy-Doucet"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "lodash": "^3.10.0",
+    "underscore.string": "^3.1.1",
+    "util": "^0.10.3",
+    "yeoman-generator": "^0.19.0",
+    "yosay": "^1.0.2"
     },
-    "scripts": {
-      "test": "mocha"
-      },
-      "files": [
-      "generators"
-      ],
-      "keywords": [
-      "yeoman-generator"
-      ],
-      "dependencies": {
-        "yeoman-generator": "^0.19.0",
-        "chalk": "^1.0.0",
-        "yosay": "^1.0.2"
-        },
-        "devDependencies": {
-          "mocha": "*"
-        }
-      }
+    "devDependencies": {
+      "mocha": "*"
+    }
+}
