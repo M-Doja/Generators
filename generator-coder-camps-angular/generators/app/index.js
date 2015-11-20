@@ -48,7 +48,7 @@ module.exports = yeoman.generators.Base.extend({
     }.bind(this));
   },
   cssChoice: function() {
-    if(this.cssChoice === 'Bootstrap') {
+    if (this.cssChoice === 'Bootstrap') {
       this.fs.copy(
         this.templatePath('/bower_files/_bower_bootstrap.json'),
         this.destinationPath('bower.json')
@@ -60,13 +60,13 @@ module.exports = yeoman.generators.Base.extend({
         );
       }
     }
-    if(this.cssChoice === 'Angular-Material') {
+    if (this.cssChoice === 'Angular-Material') {
       this.fs.copy(
         this.templatePath('/bower_files/_bower_angular.json'),
         this.destinationPath('bower.json')
       );
     }
-    if(this.cssChoice === 'None') {
+    if (this.cssChoice === 'None') {
       this.fs.copy(
         this.templatePath('/bower_files/_bower_none.json'),
         this.destinationPath('bower.json')
@@ -74,7 +74,7 @@ module.exports = yeoman.generators.Base.extend({
     }
   },
   projectfiles: function() {
-    this.template('_package.json','package.json');
+    this.template('_package.json', 'package.json');
     this.template('_index.html', './views/index.html');
 
     this.fs.copy(
@@ -86,10 +86,18 @@ module.exports = yeoman.generators.Base.extend({
       this.destinationPath('.gitignore')
     );
 
-    this.fs.copy(
-      this.templatePath('_app.js'),
-      this.destinationPath('/public/javascript/app.js')
-    );
+    if (this.cssChoice === 'Angular-Material') {
+      this.fs.copy(
+        this.templatePath('_app.material.js'),
+        this.destinationPath('/public/javascript/app.js')
+      );
+    }
+    else {
+      this.fs.copy(
+        this.templatePath('_app.js'),
+        this.destinationPath('/public/javascript/app.js')
+      );
+    }
     this.fs.copy(
       this.templatePath('_HomeController.js'),
       this.destinationPath('/public/javascript/controllers/HomeController.js')
