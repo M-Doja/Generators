@@ -9,12 +9,10 @@ var inquirer = require('inquirer');
 module.exports = yeoman.generators.Base.extend({
   prompting: function() {
     var done = this.async();
-
     // Have Yeoman greet the user.
     this.log(yosay(
       'Welcome to the ' + chalk.red('Angular') + ' generator!'
     ));
-
     var prompts = [{
       name: 'appName',
       message: 'What is the app\'s name?',
@@ -24,6 +22,16 @@ module.exports = yeoman.generators.Base.extend({
       name: 'appDesc',
       message: 'How would you describe your application?',
       default: 'A MEAN stack application.'
+    }, {
+      name: 'unitTesting',
+      message: 'Would you like to have unit testing?',
+      type: 'list',
+      choices: ['Yes', 'No']
+    }, {
+      name: 'nodeVersion',
+      message: 'Which version of Node are you using?',
+      type: 'list',
+      choices: ['0.12.7', '4.0+', '4.0+ Jackie Version (using function)']
     }, {
       name: 'cssChoice',
       message: 'Would you like to use Angular-Material or Bootstrap?',
@@ -73,14 +81,46 @@ module.exports = yeoman.generators.Base.extend({
       );
     }
   },
+  serverFile: function() {
+    if (this.nodeVersion === '0.12.7') {
+      this.fs.copy(
+        this.templatePath('_server_0.12.7.js'),
+        this.destinationPath('server.js')
+      );
+      if (this.unitTesting) {
+        this.fs.copy(
+          this.templatePath('_test.spec.js'),
+          this.destinationPath('./test/test.spec.js')
+        );
+      }
+    } else if (this.nodeVersion === '4.0+') {
+      this.fs.copy(
+        this.templatePath('_server_es6.js'),
+        this.destinationPath('server.js')
+      );
+      if (this.unitTesting) {
+        this.fs.copy(
+          this.templatePath('_test_es6.spec.js'),
+          this.destinationPath('./test/test.spec.js')
+        );
+      }
+    } else {
+      this.fs.copy(
+        this.templatePath('_server_es6_jackie.js'),
+        this.destinationPath('server.js')
+      );
+      if (this.unitTesting) {
+        this.fs.copy(
+          this.templatePath('_test_es6.spec.js'),
+          this.destinationPath('./test/test.spec.js')
+        );
+      }
+    }
+  },
   projectfiles: function() {
     this.template('_package.json', 'package.json');
     this.template('_index.html', './views/index.html');
 
-    this.fs.copy(
-      this.templatePath('_server.js'),
-      this.destinationPath('server.js')
-    );
     this.fs.copy(
       this.templatePath('_gitignore'),
       this.destinationPath('.gitignore')
@@ -91,8 +131,7 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('_app.material.js'),
         this.destinationPath('/public/javascript/app.js')
       );
-    }
-    else {
+    } else {
       this.fs.copy(
         this.templatePath('_app.js'),
         this.destinationPath('/public/javascript/app.js')
