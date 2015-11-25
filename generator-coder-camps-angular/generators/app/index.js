@@ -52,6 +52,8 @@ module.exports = yeoman.generators.Base.extend({
       this.appDesc = props.appDesc || 'A MEAN stack application.';
       this.cssChoice = props.cssChoice;
       this.bstemplate = props.bootstrapTemplate || 'None';
+      this.unitTesting = props.unitTesting;
+      this.nodeVersion = props.nodeVersion;
       done();
     }.bind(this));
   },
@@ -87,7 +89,7 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('_server_0.12.7.js'),
         this.destinationPath('server.js')
       );
-      if (this.unitTesting) {
+      if (this.unitTesting === 'Yes') {
         this.fs.copy(
           this.templatePath('_test.spec.js'),
           this.destinationPath('./test/test.spec.js')
@@ -98,7 +100,7 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('_server_es6.js'),
         this.destinationPath('server.js')
       );
-      if (this.unitTesting) {
+      if (this.unitTesting === 'Yes') {
         this.fs.copy(
           this.templatePath('_test_es6.spec.js'),
           this.destinationPath('./test/test.spec.js')
@@ -109,7 +111,7 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('_server_es6_jackie.js'),
         this.destinationPath('server.js')
       );
-      if (this.unitTesting) {
+      if (this.unitTesting === 'Yes') {
         this.fs.copy(
           this.templatePath('_test_es6.spec.js'),
           this.destinationPath('./test/test.spec.js')
