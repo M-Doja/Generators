@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var app = express();
 var port = process.env.PORT || 3000;
 
-app.set('views', './views'));
+app.set('views', './views');
 app.engine('.html', require('ejs').renderFile);
 app.use(express.static('./public'));
 app.use(express.static('./bower_components'));
@@ -16,9 +16,11 @@ app.set('view options', {
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.get('/', function(req, res) {
+<% if(html5mode === '# (hashtag)') { %>app.get('/', function(req, res) {
 	res.render('index');
-});
+});<% } %><% if(html5mode === 'html5 mode') { %>app.get('/*', function(req, res) {
+	res.render('index');
+});<% }%>
 
 module.exports = app.listen(port, function() {
 	console.log('Example app listening at http://localhost:' + port);

@@ -33,6 +33,11 @@ module.exports = yeoman.generators.Base.extend({
       type: 'list',
       choices: ['0.12.7', '4.0+', '4.0+ Jackie Version (using function)']
     }, {
+      name: 'html5Mode',
+      message: 'Do you want to use # or html5 mode for angular?',
+      type: 'list',
+      choices: ['# (hashtag)', 'html5 mode']
+    }, {
       name: 'cssChoice',
       message: 'Would you like to use Angular-Material or Bootstrap?',
       type: 'list',
@@ -54,6 +59,7 @@ module.exports = yeoman.generators.Base.extend({
       this.bstemplate = props.bootstrapTemplate || 'None';
       this.unitTesting = props.unitTesting;
       this.nodeVersion = props.nodeVersion;
+      this.html5mode = props.html5Mode;
       done();
     }.bind(this));
   },
@@ -85,10 +91,7 @@ module.exports = yeoman.generators.Base.extend({
   },
   serverFile: function() {
     if (this.nodeVersion === '0.12.7') {
-      this.fs.copy(
-        this.templatePath('_server_0.12.7.js'),
-        this.destinationPath('server.js')
-      );
+      this.template('_server_0.12.7.js', 'server.js');
       if (this.unitTesting === 'Yes') {
         this.fs.copy(
           this.templatePath('_test.spec.js'),
@@ -96,10 +99,7 @@ module.exports = yeoman.generators.Base.extend({
         );
       }
     } else if (this.nodeVersion === '4.0+') {
-      this.fs.copy(
-        this.templatePath('_server_es6.js'),
-        this.destinationPath('server.js')
-      );
+      this.template('_server_es6.js', 'server.js');
       if (this.unitTesting === 'Yes') {
         this.fs.copy(
           this.templatePath('_test_es6.spec.js'),
@@ -107,10 +107,7 @@ module.exports = yeoman.generators.Base.extend({
         );
       }
     } else {
-      this.fs.copy(
-        this.templatePath('_server_es6_jackie.js'),
-        this.destinationPath('server.js')
-      );
+      this.template('_server_es6_jackie.js', 'server.js');
       if (this.unitTesting === 'Yes') {
         this.fs.copy(
           this.templatePath('_test_es6.spec.js'),
@@ -129,15 +126,9 @@ module.exports = yeoman.generators.Base.extend({
     );
 
     if (this.cssChoice === 'Angular-Material') {
-      this.fs.copy(
-        this.templatePath('_app.material.js'),
-        this.destinationPath('/public/javascript/app.js')
-      );
+      this.template('_app_material.js', './public/javascript/app.js');
     } else {
-      this.fs.copy(
-        this.templatePath('_app.js'),
-        this.destinationPath('/public/javascript/app.js')
-      );
+      this.template('_app.js', './public/javascript/app.js');
     }
     this.fs.copy(
       this.templatePath('_HomeController.js'),

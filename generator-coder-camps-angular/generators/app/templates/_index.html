@@ -3,6 +3,7 @@
 <head>
 	<title><%= appName %></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<% if(html5mode === 'html5 mode') { %><base href="/" /><% } %>
 	<% if(cssChoice === 'Bootstrap') { %><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 	<% if(bstemplate !== 'None') { %><link rel="stylesheet" type="text/css" href="/css/bootstrap_theme.min.css"><% } %><% } %>
 	<% if(cssChoice === 'Angular-Material') { %><link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css"><% } %>
