@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<title><%= appName %></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<% if(html5mode === 'html5 mode') { %><base href="/" /><% } %>
+	<% if(cssChoice === 'Bootstrap') { %><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+	<% if(bstemplate !== 'None') { %><link rel="stylesheet" type="text/css" href="/css/bootstrap_theme.min.css"><% } %><% } %>
+	<% if(cssChoice === 'Angular-Material') { %><link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css"><% } %>
+	<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+	<ui-view></ui-view>
+	<!-- Ext Libs -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script><% if(cssChoice === 'Angular-Material') { %>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-aria.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.js"></script><% } %>
+	<script src="/javascript/app.js"></script>
+	<script src="/javascript/services/HomeFactory.js"></script>
+	<script src="/javascript/controllers/HomeController.js"></script>
+</body>
+</html>
