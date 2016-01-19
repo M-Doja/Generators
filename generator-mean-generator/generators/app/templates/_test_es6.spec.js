@@ -1,4 +1,4 @@
 "use strict";
-let should = require('should');
-let request = require('supertest');
-let app = require('../server');
+const should = require('should');
+const request = require('supertest');
+const app = require('../server');

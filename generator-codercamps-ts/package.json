@@ -1,0 +1,27 @@
+{
+  "name": "generator-codercamps-ts",
+  "version": "0.0.2",
+  "description": "",
+  "homepage": "",
+  "author": {
+    "name": "Jeremy Doucet",
+    "email": "jeremy.doucet93@gmail.com",
+    "url": ""
+  },
+  "files": [
+    "generators"
+  ],
+  "main": "generators/index.js",
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^0.21.1",
+    "chalk": "^1.0.0",
+    "yosay": "^1.0.2"
+  },
+  "devDependencies": {
+    "yeoman-assert": "^2.0.0"
+  },
+  "license": "MIT"
+}

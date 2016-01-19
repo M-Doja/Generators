@@ -63,91 +63,44 @@ module.exports = yeoman.generators.Base.extend({
       done();
     }.bind(this));
   },
-  cssChoice: function() {
-    if (this.cssChoice === 'Bootstrap') {
-      this.fs.copy(
-        this.templatePath('/bower_files/_bower_bootstrap.json'),
-        this.destinationPath('bower.json')
-      );
-      if (this.bstemplate !== 'None') {
-        this.fs.copy(
-          this.templatePath('/bootstrap_themes/_' + this.bstemplate + '.min.css'),
-          this.destinationPath('/public/css/bootstrap_theme.min.css')
-        );
-      }
-    }
-    if (this.cssChoice === 'Angular-Material') {
-      this.fs.copy(
-        this.templatePath('/bower_files/_bower_angular.json'),
-        this.destinationPath('bower.json')
-      );
-    }
-    if (this.cssChoice === 'None') {
-      this.fs.copy(
-        this.templatePath('/bower_files/_bower_none.json'),
-        this.destinationPath('bower.json')
-      );
-    }
-  },
-  serverFile: function() {
-    if (this.nodeVersion === '0.12.7') {
-      this.template('_server_0.12.7.js', 'server.js');
-      if (this.unitTesting === 'Yes') {
-        this.fs.copy(
-          this.templatePath('_test.spec.js'),
-          this.destinationPath('./test/test.spec.js')
-        );
-      }
-    } else if (this.nodeVersion === '4.0+') {
-      this.template('_server_es6.js', 'server.js');
-      if (this.unitTesting === 'Yes') {
-        this.fs.copy(
-          this.templatePath('_test_es6.spec.js'),
-          this.destinationPath('./test/test.spec.js')
-        );
-      }
-    } else {
-      this.template('_server_es6_jackie.js', 'server.js');
-      if (this.unitTesting === 'Yes') {
-        this.fs.copy(
-          this.templatePath('_test_es6.spec.js'),
-          this.destinationPath('./test/test.spec.js')
-        );
-      }
-    }
-  },
   projectfiles: function() {
-    this.template('_package.json', 'package.json');
-    this.template('_index.html', './views/index.html');
-
-    this.fs.copy(
-      this.templatePath('_gitignore'),
-      this.destinationPath('.gitignore')
-    );
-
-    if (this.cssChoice === 'Angular-Material') {
-      this.template('_app_material.js', './public/javascript/app.js');
-    } else {
-      this.template('_app.js', './public/javascript/app.js');
-    }
-    this.fs.copy(
-      this.templatePath('_HomeController.js'),
-      this.destinationPath('/public/javascript/controllers/HomeController.js')
-    );
-    this.fs.copy(
-      this.templatePath('_HomeFactory.js'),
-      this.destinationPath('/public/javascript/services/HomeFactory.js')
-    );
-    this.fs.copy(
-      this.templatePath('_site.css'),
-      this.destinationPath('/public/css/site.css')
-    );
-    this.fs.copy(
-      this.templatePath('_homepage.html'),
-      this.destinationPath('/public/templates/home.html')
-    );
+    this.template('./gen/bin/www', './bin/www');
+    this.template('./gen/config/passport.js', './config/passport.js');
+    this.template('./gen/models/User.js', './models/User.js');
+    this.template('./gen/routes/userRoutes.js', './routes/userRoutes.js');
+    this.template('./gen/src/javascript/controllers/HomeController.js', './src/javascript/controllers/HomeController.js');
+    this.template('./gen/src/javascript/controllers/LoginController.js', './src/javascript/controllers/LoginController.js');
+    this.template('./gen/src/javascript/controllers/NavController.js', './src/javascript/controllers/NavController.js');
+    this.template('./gen/src/javascript/controllers/RegisterController.js', './src/javascript/controllers/RegisterController.js');
+    this.template('./gen/src/javascript/services/AuthFactory.js', './src/javascript/services/AuthFactory.js');
+    this.template('./gen/src/javascript/services/UserFactory.js', './src/javascript/services/UserFactory.js');
+    this.template('./gen/src/javascript/app.js', './src/javascript/app.js');
+    this.template('./gen/src/javascript/ngFacebook.js', './src/javascript/ngFacebook.js');
+    this.template('./gen/src/sass/site.scss', './src/sass/site.scss');
+    this.template('./gen/src/templates/home.html', './src/templates/home.html');
+    this.template('./gen/src/templates/login.html', './src/templates/login.html');
+    this.template('./gen/src/templates/register.html', './src/templates/register.html');
+    this.template('./gen/test/_root.js', './test/_root.js');
+    this.template('./gen/test/userRoutes.spec.js', './test/userRoutes.spec.js');
+    this.template('./gen/views/error.html', './views/error.html');
+    this.template('./gen/views/index.html', './views/index.html');
+    this.template('./gen/.env', '.env');
+    this.template('./gen/.gitignore', '.gitignore');
+    this.template('./gen/.jshintrc', '.jshintrc');
+    this.template('./gen/bower.json', 'bower.json');
+    this.template('./gen/nodemon.json', 'nodemon.json');
+    this.template('./gen/package.json', 'package.json');
+    this.template('./gen/server.js', 'server.js');
+    this.template('./gen/gulpfile.js', 'gulpfile.js');
   },
   install: function() {
-    this.installDependencies();
+    this.installDependencies({
+      skipInstall: this.options['skip-install'],
+      callback: function() {
+        this.spawnCommand('gulp', ['scripts', 'styles', 'minify-html'])
+      }.bind(this)
+    });
+  },
+  gulp: function() {
   }
 });
